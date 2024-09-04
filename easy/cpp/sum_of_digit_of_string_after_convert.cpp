@@ -1,27 +1,40 @@
-// link to the problem: https://leetcode.com/problems/sum-of-digits-of-string-after-convert/
-
-#include <string>  
-#include <sstream> 
+#include <iostream>
+#include <string>
 #include <cstdlib>
 
 class Solution {
 public:
-    int getLucky(string s, int k) {
-        // convert each character in the string to its corresponding numeric value
-        string number = "";
+    int getLucky(std::string s, int k) {
+        std::string number = "";
         for (char x : s) {
-            number += to_string(x - 'a' + 1);
+            number += std::to_string(x - 'a' + 1);
         }
 
-        // perform the transformation 'k' times
         while (k > 0) {
             int temp = 0;
-            for (char x : number ){
-                temp += x - '0'; // sum the digits of the current number
+            for (char x : number) {
+                temp += x - '0';
             }
-            number = to_string(temp); // convert the sum back to a string
+            number = std::to_string(temp);
             k--;
         }
-        return stoi(number); // return the final result an integer
+        return std::stoi(number);
     }
 };
+
+int main() {
+    std::cout << "Program dimulai!" << std::endl;
+
+    Solution sol;
+    std::string s = "leetcode";  
+    int k = 2;  
+
+    std::cout << "Memanggil fungsi getLucky..." << std::endl;
+
+    int result = sol.getLucky(s, k);
+
+    std::cout << "Hasil: " << result << std::endl;
+
+    return 0;
+}
+
